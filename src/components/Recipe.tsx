@@ -1,11 +1,17 @@
 import React from "react";
 
-export const Recipe: React.FC = () => {
+interface RecType {
+  title: string;
+  calories: string;
+  image: string;
+}
+
+export const Recipe: React.FC<RecType> = ({ title, calories, image }) => {
   return (
     <div>
-      <h1> Title </h1>
-      <p> Calories </p>
-      <img src="" alt="" />
+      <h1> {title} </h1>
+      <p> {calories} </p>
+      <img src={image} alt="" />
     </div>
   );
 };
