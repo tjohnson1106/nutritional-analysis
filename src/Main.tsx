@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Recipe } from "./components/Recipe";
 
 export const Main: React.FC = () => {
   const APP_ID = "f5466f40";
@@ -16,6 +17,7 @@ export const Main: React.FC = () => {
     );
     const data = await response.json();
     setRecipes(data.hits);
+    console.log(data.hits);
   };
 
   return (
@@ -26,6 +28,9 @@ export const Main: React.FC = () => {
           Search
         </button>
       </form>
+      {recipes.map((recipe) => (
+        <Recipe />
+      ))}
     </div>
   );
 };
