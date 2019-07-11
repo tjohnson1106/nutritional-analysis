@@ -9,14 +9,18 @@ export const Main: React.FC = () => {
 
   const [search, setSearch] = useState("");
 
+  const [query, setQuery] = useState("chicken");
+
   useEffect(() => {
     getRecipes();
+    console.log("fetching data");
   }, []);
 
   const getRecipes = async () => {
     const response = await fetch(
-      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     );
+
     const data = await response.json();
     setRecipes(data.hits);
     console.log(data.hits);
@@ -25,6 +29,11 @@ export const Main: React.FC = () => {
   const updateSearch = (e: any) => {
     setSearch(e.target.value);
     console.log(search);
+  };
+
+  const getSearch = (e: any) => {
+    e.preventDefault();
+    setQuery(search);
   };
 
   return (
